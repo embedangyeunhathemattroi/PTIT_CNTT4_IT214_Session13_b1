@@ -1,0 +1,16 @@
+server:
+  port: 8080
+
+storex:
+  marketing-voucher-url: http://localhost:9999/api/flash-vouchers
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      voucherCircuitBreaker:
+        sliding-window-type: COUNT_BASED
+        sliding-window-size: 2
+        minimum-number-of-calls: 2
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 30s
+        permitted-number-of-calls-in-half-open-state: 1
